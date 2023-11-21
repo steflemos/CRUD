@@ -5,7 +5,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class AlunoTableModel extends AbstractTableModel {
 	private List<Aluno> cadastros = new ArrayList<Aluno>();
-	private String[] colunas = new String[] { "Id", "Nome", "Idade", "Email", "Endereco", "Cep", "Telefone", "Observacao", "Ativo" };
+	private String[] colunas = new String[] {"Nome", "Idade", "Email", "Endereço", "Cep", "Telefone", "Curso", "Observação" ,"Ativo" };
 
 	public AlunoTableModel(List<Aluno> cadastros) {
 		this.cadastros = cadastros;
@@ -36,35 +36,35 @@ public class AlunoTableModel extends AbstractTableModel {
 		String value = null;
 
 		if (rowIndex >= 0 && rowIndex < cadastros.size()) {
-			Aluno tarefa = cadastros.get(rowIndex);
+			Aluno cadastro = cadastros.get(rowIndex);
 
 			switch (columnIndex) {
 			case 0:
-				value = Integer.toString(tarefa.getId());
+				value = Integer.toString(cadastro.getId());
 				break;
 			case 1:
-				value = tarefa.getNome();
+				value = cadastro.getNome();
 				break;
 			case 2:
-				value = tarefa.getIdade();
+				value = cadastro.getIdade();
 				break;
 			case 3:
-				value = tarefa.getEmail();
+				value = cadastro.getEmail();
 				break;
 			case 4:
-				value = tarefa.getEndereco();
+				value = cadastro.getEndereco();
 				break;
 			case 5:
-				value = tarefa.getCep();
+				value = cadastro.getCep();
 				break;
 			case 6:
-				value = tarefa.getTelefone();
+				value = cadastro.getTelefone();
 				break;
 			case 7:
-				value = tarefa.getObservacao();
-				break;
+				value = cadastro.getObservacao();
+				break; /// descobrir como inserir getCurso aqui para o curso escolhido apareca na tabela inicial
 			case 8:
-				value = tarefa.getStatus();
+				value = cadastro.getAtivo() ? "Ativo" : "Desativado";
 				break;
 			default:
 				System.err.printf("[ERRO] Índice de coluna inválido: %d\n", columnIndex);

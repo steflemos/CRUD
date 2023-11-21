@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Aluno {
     private int id;
     private String nome;
@@ -10,14 +8,9 @@ public class Aluno {
     private String telefone;
     private String usuario;
     private String senha;
-    private ArrayList<String> curso;
+    private Object curso;
     private String observacao;
     private boolean ativo;
-
-    public Aluno() {
-        this.curso = new ArrayList<>();
-        cursosDisponiveis();
-    }
 
     public int getId() {
         return id;
@@ -48,11 +41,6 @@ public class Aluno {
     }
 
     public void setEmail(String email) {
-        if (email != null && email.matches("\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b")) {
-            this.email = email;
-        } else {
-            System.out.println("Email inválido. Por favor, insira um email válido.");
-        }
     }
 
     public String getEndereco() {
@@ -68,11 +56,6 @@ public class Aluno {
     }
 
     public void setCep(String cep) {
-        if (cep.matches("\\d{8}")) {
-            this.cep = cep;
-        } else {
-            System.out.println("CEP inválido. Por favor, insira um valor maior que zero.");
-        }
     }
 
     public String getTelefone() {
@@ -80,11 +63,6 @@ public class Aluno {
     }
 
     public void setTelefone(String telefone) {
-        if (telefone.matches("\\d{10,11}")) {
-            this.telefone = telefone;
-        } else {
-            System.out.println("Telefone inválido. Por favor, insira um número de telefone válido com 10 ou 11 dígitos.");
-        }
     }
 
     public String getUsuario() {
@@ -92,11 +70,6 @@ public class Aluno {
     }
 
     public void setUsuario(String usuario) {
-        if (usuario != null && !usuario.isEmpty()) {
-            this.usuario = usuario;
-        } else {
-            System.out.println("Nome de usuário inválido. Por favor, insira um nome de usuário válido.");
-        }
     }
 
     public String getSenha() {
@@ -106,17 +79,12 @@ public class Aluno {
     public void setSenha(char[] senha) {
     }
 
-    public void cursosDisponiveis() {
-        this.curso.add("Desenvolvimento Web");
-        this.curso.add("Inteligência Artificial");
-        this.curso.add("Segurança da Informação");
-        this.curso.add("Ciência de Dados");
-        this.curso.add("Desenvolvimento Mobile");
-        this.curso.add("Redes de Computadores");
-        this.curso.add("Blockchain e Criptomoedas");
-        this.curso.add("Cloud Computing");
-        this.curso.add("Desenvolvimento de Jogos");
-        this.curso.add("Arquitetura de Software");
+    public Object getCurso(){
+        return curso;
+    }
+
+    public void setCurso(Object object){
+        this.curso = object;
     }
 
     public String getObservacao() {
@@ -127,16 +95,12 @@ public class Aluno {
         this.observacao = observacao;
     }
 
-    public boolean estaAtivo() {
-        return ativo;
+    public boolean getAtivo(){
+        return this.ativo;
     }
 
-    public void setStatusAtivo(boolean ativo) {
+    public void setAtivo(boolean ativo){
         this.ativo = ativo;
-    }
-
-    public String getStatus() {
-        return (ativo) ? "Ativo" : "Inativo";
     }
 
 }

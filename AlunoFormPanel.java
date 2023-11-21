@@ -8,7 +8,6 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -18,7 +17,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
 
 public class AlunoFormPanel extends JPanel {
 	private static final Insets FIELD_INSETS = new Insets(5, 10, 0, 0);
@@ -35,14 +33,23 @@ public class AlunoFormPanel extends JPanel {
 	private JTextField idadeTxt;
 	private JTextField emailTxt;
 	private JTextField enderecoTxt;
-	private JTextField cepTxt; 
-	private JTextField telefoneTxt; 
-	private JTextField usuarioTxt; 
-	private JPasswordField senhaTxt; 
-	private String[] cursos = {"Selecione uma opção: ", "teste 2", "gastronomia", "teste3"};
+	private JTextField cepTxt;
+	private JTextField telefoneTxt;
+	private JTextField usuarioTxt;
+	private JPasswordField senhaTxt;
+	private String[] cursos = { "Selecione uma opção: ", "Desenvolvimento Web", "Inteligência Artificial",
+			"Segurança da Informação", "Ciência de Dados", "Desenvolvimento Mobile", "Redes de Computadores",
+			"Blockchain e Criptomoedas", "Cloud Computing", "Desenvolvimento de Jogos", "Arquitetura de Software" };
 	private JComboBox<String> cursoTxt;
 	private JTextArea obsTxt;
-	private JCheckBox ativo;
+	private interface AtivoLabel {
+        public static final String ATIVO = "Sim";
+        public static final String DESATIVO = "Não";
+        public static String[] labels = {
+                ATIVO, DESATIVO
+        };
+    }
+	private JComboBox<String> ativoComboBox;
 	private JButton salvarBtn;
 	private JButton cancelarBtn;
 
@@ -68,7 +75,9 @@ public class AlunoFormPanel extends JPanel {
 					telefoneTxt.setText("");
 					usuarioTxt.setText("");
 					senhaTxt.setText("");
+					cursoTxt.setSelectedItem("");
 					obsTxt.setText("");
+					ativoComboBox.setSelectedItem(AtivoLabel.ATIVO);
 				} else {
 					idTxt.setText(Integer.toString(cadastro.getId()));
 					nomeTxt.setText(cadastro.getNome());
@@ -79,7 +88,9 @@ public class AlunoFormPanel extends JPanel {
 					telefoneTxt.setText(cadastro.getTelefone());
 					usuarioTxt.setText(cadastro.getUsuario());
 					senhaTxt.setText(cadastro.getSenha());
+					cursoTxt.setSelectedItem(cadastro.getCurso());
 					obsTxt.setText(cadastro.getObservacao());
+					ativoComboBox.setSelectedItem(cadastro.getAtivo() ? AtivoLabel.ATIVO : AtivoLabel.DESATIVO);
 				}
 			}
 		});
@@ -152,10 +163,10 @@ public class AlunoFormPanel extends JPanel {
 		scrollPane = new JScrollPane(obsTxt);
 		adicionarComponente(scrollPane, 10, 1);
 
-		rotulo = new JLabel("Ativo");
-		adicionarComponente(rotulo, 11, 0);
-		ativo = new JCheckBox();
-		adicionarComponente(ativo, 11, 1);
+		rotulo = new JLabel("Status");
+        adicionarComponente(rotulo, 11, 0);
+        ativoComboBox = new JComboBox<>(AtivoLabel.labels);
+        adicionarComponente(ativoComboBox, 11, 1);
 
 		criarBotoes();
 	}
@@ -187,6 +198,8 @@ public class AlunoFormPanel extends JPanel {
 					cadastro.setUsuario(usuarioTxt.getText());
 					cadastro.setSenha(senhaTxt.getPassword());
 					cadastro.setObservacao(obsTxt.getText());
+					cadastro.setCurso(cursoTxt.getSelectedItem());
+					cadastro.setAtivo(ativoComboBox.getSelectedItem() == AtivoLabel.ATIVO);
 					TarefaStorage.inserir(cadastro);
 				} else {
 					cadastro.setId(Integer.parseInt(idTxt.getText()));
@@ -198,7 +211,9 @@ public class AlunoFormPanel extends JPanel {
 					cadastro.setTelefone(telefoneTxt.getText());
 					cadastro.setUsuario(usuarioTxt.getText());
 					cadastro.setSenha(senhaTxt.getPassword());
+					cadastro.setCurso(cursoTxt.getSelectedItem());
 					cadastro.setObservacao(obsTxt.getText());
+					cadastro.setAtivo(ativoComboBox.getSelectedItem() == AtivoLabel.ATIVO);
 					TarefaStorage.atualizar(cadastro);
 				}
 

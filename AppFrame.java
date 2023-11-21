@@ -11,7 +11,6 @@ public class AppFrame extends JFrame {
 	private CardLayout layout;
 	private JPanel cardsPane;
 
-	private InicialPanel inicialPanel;
 	private AlunoListPanel alunoListPanel;
 	private AlunoFormPanel alunoFormPanel;
 
@@ -46,9 +45,6 @@ public class AppFrame extends JFrame {
 	}
 
 	private void criarCards() {
-		inicialPanel = new InicialPanel(this);
-		cardsPane.add(inicialPanel, InicialPanel.class.getName());
-
 		alunoListPanel = new AlunoListPanel(this);
 		cardsPane.add(alunoListPanel, AlunoListPanel.class.getName());
 

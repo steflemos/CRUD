@@ -13,7 +13,6 @@ public class TodoApp {
 
 	private static void criarMostrarGUI() {
 		AppFrame frame = new AppFrame();
-
 		frame.mostrar();
 	}
 } // fim da classe Matriculas

@@ -11,7 +11,8 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 public class AlunoListPanel extends JPanel {
 	private AppFrame frame;
@@ -24,7 +25,7 @@ public class AlunoListPanel extends JPanel {
 	public AlunoListPanel(AppFrame appFrame) {
 		frame = appFrame;
 
-		setLayout(new BorderLayout(10, 10));
+		setLayout(new BorderLayout(15, 15));
 
 		criarComandosPanel();
 		criarTabelaPanel();
@@ -74,13 +75,12 @@ public class AlunoListPanel extends JPanel {
 		});
 		panel.add(removerTarefaBtn);
 
-		add(panel, BorderLayout.NORTH);
+		add(panel, BorderLayout.SOUTH);
 
 		desabilitarBtns();
 	}
 
 	private void criarTabelaPanel() {
-		JPanel panel = new JPanel();
 
 		tableModel = new AlunoTableModel(TarefaStorage.listar());
 		tabela = new JTable(tableModel);
@@ -99,9 +99,14 @@ public class AlunoListPanel extends JPanel {
 		});
 
 		JScrollPane scrollPane = new JScrollPane(tabela);
-		panel.add(scrollPane);
+		add(scrollPane, BorderLayout.CENTER);
 
-		add(panel, BorderLayout.CENTER);
+		tabela.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
+		tabela.getTableHeader().setReorderingAllowed(false);
+
+		TableColumnModel columnModel = tabela.getColumnModel();
+		TableColumn firstColumn = columnModel.getColumn(0);
+		firstColumn.setPreferredWidth(150);
 	}
 
 	private void habilitarBtns() {
