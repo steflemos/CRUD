@@ -6,14 +6,14 @@ import javax.swing.JPanel;
 
 
 public class AppFrame extends JFrame {
-	public static final String titulo = "TODO App";
+	public static final String titulo = "Matricula de alunos";
 	
 	private CardLayout layout;
 	private JPanel cardsPane;
 
-	// private InicialPanel inicialPanel;
-	// private TarefaListPanel tarefaListPanel;
-	// private TarefaFormPanel tarefaFormPanel;
+	private InicialPanel inicialPanel;
+	private AlunoListPanel alunoListPanel;
+	private AlunoFormPanel alunoFormPanel;
 
 	public AppFrame() {
 		super(titulo);
@@ -26,7 +26,7 @@ public class AppFrame extends JFrame {
 		cardsPane.setLayout(layout);
 		add(cardsPane);
 
-		// criarCards();
+		criarCards();
 	}
 
 	public void mostrar() {
@@ -35,24 +35,24 @@ public class AppFrame extends JFrame {
 		setVisible(true);
 	}
 
-	// public void mostrarListaTarefas() {
-	// 	tarefaListPanel.recarregar();
-	// 	layout.show(cardsPane, TarefaListPanel.class.getName());
-	// }
+	public void mostrarListaTarefas() {
+		alunoListPanel.recarregar();
+		layout.show(cardsPane, AlunoListPanel.class.getName());
+	}
 	
-	// public void mostrarFormTarefas(Tarefa tarefa) {
-	// 	tarefaFormPanel.setTarefa(tarefa);
-	// 	layout.show(cardsPane, TarefaFormPanel.class.getName());
-	// }
+	public void mostrarFormTarefas(Aluno tarefa) {
+		alunoFormPanel.setTarefa(tarefa);
+		layout.show(cardsPane, AlunoFormPanel.class.getName());
+	}
 
-	// private void criarCards() {
-	// 	inicialPanel = new InicialPanel(this);
-	// 	cardsPane.add(inicialPanel, InicialPanel.class.getName());
+	private void criarCards() {
+		inicialPanel = new InicialPanel(this);
+		cardsPane.add(inicialPanel, InicialPanel.class.getName());
 
-	// 	tarefaListPanel = new TarefaListPanel(this);
-	// 	cardsPane.add(tarefaListPanel, TarefaListPanel.class.getName());
+		alunoListPanel = new AlunoListPanel(this);
+		cardsPane.add(alunoListPanel, AlunoListPanel.class.getName());
 
-	// 	tarefaFormPanel = new TarefaFormPanel(this);
-	// 	cardsPane.add(tarefaFormPanel, TarefaFormPanel.class.getName());
-	// }
+		alunoFormPanel = new AlunoFormPanel(this);
+		cardsPane.add(alunoFormPanel, AlunoFormPanel.class.getName());
+	}
 } // fim da classe AppFrame

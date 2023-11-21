@@ -6,14 +6,14 @@ public class TodoApp {
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				// criarMostrarGUI();
+				criarMostrarGUI();
 			}
 		});
 	}
 
-	// private static void criarMostrarGUI() {
-	// 	AppFrame frame = new AppFrame();
+	private static void criarMostrarGUI() {
+		AppFrame frame = new AppFrame();
 
-	// 	frame.mostrar();
-	// }
+		frame.mostrar();
+	}
 } // fim da classe Matriculas

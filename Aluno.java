@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Aluno {
     private int id;
     private String nome;
-    private int idade;
+    private String idade;
     private String email;
     private String endereco;
     private String cep;
@@ -35,16 +35,12 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public int getIdade() {
+    public String getIdade() {
         return idade;
     }
 
-    public void setIdade(int idade) {
-        if (idade > 0) {
-            this.idade = idade;
-        } else {
-            System.out.println("Idade inválida. Por favor, insira um valor válido.");
-        }
+    public void setIdade(String idade) {
+        this.idade = idade;
     }
 
     public String getEmail() {
@@ -107,12 +103,7 @@ public class Aluno {
         return senha;
     }
 
-    public void setSenha(String senha) {
-        if (senha != null && senha.length() >= 6) {
-            this.senha = senha;
-        } else {
-            System.out.println("Senha inválida. Por favor, insira uma senha com pelo menos 6 caracteres.");
-        }
+    public void setSenha(char[] senha) {
     }
 
     public void cursosDisponiveis() {
