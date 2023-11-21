@@ -41,6 +41,7 @@ public class Aluno {
     }
 
     public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getEndereco() {
@@ -56,6 +57,7 @@ public class Aluno {
     }
 
     public void setCep(String cep) {
+        this.cep = cep;
     }
 
     public String getTelefone() {
@@ -63,6 +65,7 @@ public class Aluno {
     }
 
     public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public String getUsuario() {
@@ -70,13 +73,15 @@ public class Aluno {
     }
 
     public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getSenha() {
         return senha;
     }
 
-    public void setSenha(char[] senha) {
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public Object getCurso(){

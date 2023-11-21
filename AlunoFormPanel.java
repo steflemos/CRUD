@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -36,15 +37,15 @@ public class AlunoFormPanel extends JPanel {
 	private JTextField cepTxt;
 	private JTextField telefoneTxt;
 	private JTextField usuarioTxt;
-	private JPasswordField senhaTxt;
+	private JTextField senhaTxt;
 	private String[] cursos = { "Selecione uma opção: ", "Desenvolvimento Web", "Inteligência Artificial",
 			"Segurança da Informação", "Ciência de Dados", "Desenvolvimento Mobile", "Redes de Computadores",
 			"Blockchain e Criptomoedas", "Cloud Computing", "Desenvolvimento de Jogos", "Arquitetura de Software" };
 	private JComboBox<String> cursoTxt;
 	private JTextArea obsTxt;
 	private interface AtivoLabel {
-        public static final String ATIVO = "Sim";
-        public static final String DESATIVO = "Não";
+        public static final String ATIVO = "Ativo";
+        public static final String DESATIVO = "Desativo";
         public static String[] labels = {
                 ATIVO, DESATIVO
         };
@@ -75,7 +76,7 @@ public class AlunoFormPanel extends JPanel {
 					telefoneTxt.setText("");
 					usuarioTxt.setText("");
 					senhaTxt.setText("");
-					cursoTxt.setSelectedItem("");
+					cursoTxt.setSelectedIndex(0);
 					obsTxt.setText("");
 					ativoComboBox.setSelectedItem(AtivoLabel.ATIVO);
 				} else {
@@ -88,7 +89,7 @@ public class AlunoFormPanel extends JPanel {
 					telefoneTxt.setText(cadastro.getTelefone());
 					usuarioTxt.setText(cadastro.getUsuario());
 					senhaTxt.setText(cadastro.getSenha());
-					cursoTxt.setSelectedItem(cadastro.getCurso());
+					cursoTxt.setSelectedIndex(Arrays.asList(cadastro.getCurso()).indexOf(cadastro.getCurso()));
 					obsTxt.setText(cadastro.getObservacao());
 					ativoComboBox.setSelectedItem(cadastro.getAtivo() ? AtivoLabel.ATIVO : AtivoLabel.DESATIVO);
 				}
@@ -196,7 +197,7 @@ public class AlunoFormPanel extends JPanel {
 					cadastro.setCep(cepTxt.getText());
 					cadastro.setTelefone(telefoneTxt.getText());
 					cadastro.setUsuario(usuarioTxt.getText());
-					cadastro.setSenha(senhaTxt.getPassword());
+					cadastro.setSenha(senhaTxt.getText());
 					cadastro.setObservacao(obsTxt.getText());
 					cadastro.setCurso(cursoTxt.getSelectedItem());
 					cadastro.setAtivo(ativoComboBox.getSelectedItem() == AtivoLabel.ATIVO);
@@ -210,7 +211,7 @@ public class AlunoFormPanel extends JPanel {
 					cadastro.setCep(cepTxt.getText());
 					cadastro.setTelefone(telefoneTxt.getText());
 					cadastro.setUsuario(usuarioTxt.getText());
-					cadastro.setSenha(senhaTxt.getPassword());
+					cadastro.setSenha(senhaTxt.getText());
 					cadastro.setCurso(cursoTxt.getSelectedItem());
 					cadastro.setObservacao(obsTxt.getText());
 					cadastro.setAtivo(ativoComboBox.getSelectedItem() == AtivoLabel.ATIVO);

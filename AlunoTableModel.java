@@ -5,7 +5,7 @@ import javax.swing.table.AbstractTableModel;
 
 public class AlunoTableModel extends AbstractTableModel {
 	private List<Aluno> cadastros = new ArrayList<Aluno>();
-	private String[] colunas = new String[] {"Nome", "Idade", "Email", "Endereço", "Cep", "Telefone", "Curso", "Observação" ,"Ativo" };
+	private String[] colunas = new String[] {"Id", "Nome", "Idade", "Email", "Endereço", "Cep", "Telefone", "Curso", "Observação" ,"Ativo" };
 
 	public AlunoTableModel(List<Aluno> cadastros) {
 		this.cadastros = cadastros;
@@ -61,9 +61,12 @@ public class AlunoTableModel extends AbstractTableModel {
 				value = cadastro.getTelefone();
 				break;
 			case 7:
-				value = cadastro.getObservacao();
-				break; /// descobrir como inserir getCurso aqui para o curso escolhido apareca na tabela inicial
+				value = (String) cadastro.getCurso();
+				break;
 			case 8:
+				value = cadastro.getObservacao();
+				break;
+			case 9:
 				value = cadastro.getAtivo() ? "Ativo" : "Desativado";
 				break;
 			default:
