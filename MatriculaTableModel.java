@@ -3,11 +3,11 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-public class AlunoTableModel extends AbstractTableModel {
-	private List<Aluno> cadastros = new ArrayList<Aluno>();
+public class MatriculaTableModel extends AbstractTableModel {
+	private List<Matricula> cadastros = new ArrayList<Matricula>();
 	private String[] colunas = new String[] {"Id", "Nome", "Idade", "Email", "Endereço", "Cep", "Telefone", "Curso", "Observação" ,"Ativo" };
 
-	public AlunoTableModel(List<Aluno> cadastros) {
+	public MatriculaTableModel(List<Matricula> cadastros) {
 		this.cadastros = cadastros;
 	}
 
@@ -36,7 +36,7 @@ public class AlunoTableModel extends AbstractTableModel {
 		String value = null;
 
 		if (rowIndex >= 0 && rowIndex < cadastros.size()) {
-			Aluno cadastro = cadastros.get(rowIndex);
+			Matricula cadastro = cadastros.get(rowIndex);
 
 			switch (columnIndex) {
 			case 0:
@@ -77,8 +77,8 @@ public class AlunoTableModel extends AbstractTableModel {
 		return value;
 	}
 
-	public Aluno getCadastro(int rowIndex) {
-		Aluno cadastro = null;
+	public Matricula getCadastro(int rowIndex) {
+		Matricula cadastro = null;
 
 		if (rowIndex >= 0 && rowIndex < cadastros.size()) {
 			cadastro = cadastros.get(rowIndex);
@@ -87,14 +87,14 @@ public class AlunoTableModel extends AbstractTableModel {
 		return cadastro;
 	}
 
-	public void carregar(List<Aluno> cadastros) {
+	public void carregar(List<Matricula> cadastros) {
 		this.cadastros = cadastros;
 		fireTableDataChanged();
 	}
 
-	public void remover(Aluno tarefa) {
+	public void remover(Matricula tarefa) {
 		cadastros.remove(tarefa);
 		fireTableDataChanged();
 	}
 
-} // fim da classe TarefaTabelaModel
+} // fim da classe MatriculaTabelaModel

@@ -1,4 +1,4 @@
-public class Aluno {
+public class Matricula {
     private int id;
     private String nome;
     private String idade;
@@ -108,4 +108,4 @@ public class Aluno {
         this.ativo = ativo;
     }
 
-}
+} // FIm da classe Matricula

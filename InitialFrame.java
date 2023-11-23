@@ -5,16 +5,16 @@ import javax.swing.JPanel;
 
 
 
-public class AppFrame extends JFrame {
+public class InitialFrame extends JFrame {
 	public static final String titulo = "Matricula de alunos";
 	
 	private CardLayout layout;
 	private JPanel cardsPane;
 
-	private AlunoListPanel alunoListPanel;
-	private AlunoFormPanel alunoFormPanel;
+	private MatriculaListPanel alunoListPanel;
+	private MatriculaFormPanel alunoFormPanel;
 
-	public AppFrame() {
+	public InitialFrame() {
 		super(titulo);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,19 +36,19 @@ public class AppFrame extends JFrame {
 
 	public void mostrarListaTarefas() {
 		alunoListPanel.recarregar();
-		layout.show(cardsPane, AlunoListPanel.class.getName());
+		layout.show(cardsPane, MatriculaListPanel.class.getName());
 	}
 	
-	public void mostrarFormTarefas(Aluno tarefa) {
+	public void mostrarFormTarefas(Matricula tarefa) {
 		alunoFormPanel.setTarefa(tarefa);
-		layout.show(cardsPane, AlunoFormPanel.class.getName());
+		layout.show(cardsPane, MatriculaFormPanel.class.getName());
 	}
 
 	private void criarCards() {
-		alunoListPanel = new AlunoListPanel(this);
-		cardsPane.add(alunoListPanel, AlunoListPanel.class.getName());
+		alunoListPanel = new MatriculaListPanel(this);
+		cardsPane.add(alunoListPanel, MatriculaListPanel.class.getName());
 
-		alunoFormPanel = new AlunoFormPanel(this);
-		cardsPane.add(alunoFormPanel, AlunoFormPanel.class.getName());
+		alunoFormPanel = new MatriculaFormPanel(this);
+		cardsPane.add(alunoFormPanel, MatriculaFormPanel.class.getName());
 	}
-} // fim da classe AppFrame
+} // fim da classe InitialFrame

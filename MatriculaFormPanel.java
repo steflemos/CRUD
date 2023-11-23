@@ -19,12 +19,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class AlunoFormPanel extends JPanel {
+public class MatriculaFormPanel extends JPanel {
 	private static final Insets FIELD_INSETS = new Insets(5, 10, 0, 0);
 
-	private Aluno cadastro;
+	private Matricula cadastro;
 
-	private AppFrame frame;
+	private InitialFrame frame;
 
 	private GridBagLayout layout;
 	private GridBagConstraints constraints;
@@ -54,7 +54,7 @@ public class AlunoFormPanel extends JPanel {
 	private JButton salvarBtn;
 	private JButton cancelarBtn;
 
-	public AlunoFormPanel(AppFrame appFrame) {
+	public MatriculaFormPanel(InitialFrame appFrame) {
 		frame = appFrame;
 
 		cadastro = null;
@@ -99,7 +99,7 @@ public class AlunoFormPanel extends JPanel {
 		criarForm();
 	}
 
-	public void setTarefa(Aluno cadastro) {
+	public void setTarefa(Matricula cadastro) {
 		this.cadastro = cadastro;
 	}
 
@@ -112,22 +112,22 @@ public class AlunoFormPanel extends JPanel {
 		idTxt.setEditable(false);
 		adicionarComponente(idTxt, 0, 1);
 
-		rotulo = new JLabel("Nome");
+		rotulo = new JLabel("Nome*");
 		adicionarComponente(rotulo, 1, 0);
 		nomeTxt = new JTextField(30);
 		adicionarComponente(nomeTxt, 1, 1);
 
-		rotulo = new JLabel("Idade");
+		rotulo = new JLabel("Idade*");
 		adicionarComponente(rotulo, 2, 0);
 		idadeTxt = new JTextField(3);
 		adicionarComponente(idadeTxt, 2, 1);
 
-		rotulo = new JLabel("Email");
+		rotulo = new JLabel("Email*");
 		adicionarComponente(rotulo, 3, 0);
 		emailTxt = new JTextField(30);
 		adicionarComponente(emailTxt, 3, 1);
 
-		rotulo = new JLabel("Endereço");
+		rotulo = new JLabel("Endereço*");
 		adicionarComponente(rotulo, 4, 0);
 		enderecoTxt = new JTextField(30);
 		adicionarComponente(enderecoTxt, 4, 1);
@@ -175,7 +175,7 @@ public class AlunoFormPanel extends JPanel {
 	private void criarBotoes() {
 		JPanel btnPanel = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) btnPanel.getLayout();
-		flowLayout.setAlignment(FlowLayout.LEFT);
+		flowLayout.setAlignment(FlowLayout.CENTER);
 
 		criarSalvarBtn(btnPanel);
 		criarCancelarBtn(btnPanel);
@@ -189,7 +189,7 @@ public class AlunoFormPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (cadastro == null) {
-					cadastro = new Aluno();
+					cadastro = new Matricula();
 					cadastro.setNome(nomeTxt.getText());
 					cadastro.setIdade(idadeTxt.getText());
 					cadastro.setEmail(emailTxt.getText());
@@ -218,7 +218,7 @@ public class AlunoFormPanel extends JPanel {
 					TarefaStorage.atualizar(cadastro);
 				}
 
-				JOptionPane.showMessageDialog(AlunoFormPanel.this, "Aluno cadastrado com sucesso!", AppFrame.titulo,
+				JOptionPane.showMessageDialog(MatriculaFormPanel.this, "Aluno cadastrado com sucesso!", InitialFrame.titulo,
 						JOptionPane.INFORMATION_MESSAGE);
 
 				frame.mostrarListaTarefas();
@@ -254,4 +254,4 @@ public class AlunoFormPanel extends JPanel {
 		layout.setConstraints(componente, constraints);
 		add(componente);
 	}
-} // fim da classe TarefaFormPanel
+} // fim da classe MatriculaFormPanel

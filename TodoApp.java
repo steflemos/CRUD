@@ -1,7 +1,5 @@
 import javax.swing.SwingUtilities;
 
-// import view.AppFrame;
-
 public class TodoApp {
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
@@ -12,7 +10,7 @@ public class TodoApp {
 	}
 
 	private static void criarMostrarGUI() {
-		AppFrame frame = new AppFrame();
+		InitialFrame frame = new InitialFrame();
 		frame.mostrar();
 	}
-} // fim da classe Matriculas
+} // fim da classe TodoApp

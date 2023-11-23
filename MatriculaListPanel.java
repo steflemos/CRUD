@@ -11,18 +11,16 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
 
-public class AlunoListPanel extends JPanel {
-	private AppFrame frame;
+public class MatriculaListPanel extends JPanel {
+	private InitialFrame frame;
 	private JButton novaTarefaBtn;
 	private JButton editarTarefaBtn;
 	private JButton removerTarefaBtn;
 	private JTable tabela;
-	private AlunoTableModel tableModel;
+	private MatriculaTableModel tableModel;
 
-	public AlunoListPanel(AppFrame appFrame) {
+	public MatriculaListPanel(InitialFrame appFrame) {
 		frame = appFrame;
 
 		setLayout(new BorderLayout(15, 15));
@@ -40,7 +38,7 @@ public class AlunoListPanel extends JPanel {
 		FlowLayout layout = (FlowLayout) panel.getLayout();
 		layout.setAlignment(FlowLayout.CENTER);
 
-		novaTarefaBtn = new JButton("Adicionar");
+		novaTarefaBtn = new JButton("Cadastrar");
 		novaTarefaBtn.addActionListener(new ActionListener() {
 
 			@Override
@@ -64,9 +62,9 @@ public class AlunoListPanel extends JPanel {
 		removerTarefaBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Aluno tarefa = tableModel.getCadastro(tabela.getSelectedRow());
-				int resposta = JOptionPane.showConfirmDialog(AlunoListPanel.this, "Deseja realmente remover?",
-						AppFrame.titulo, JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+				Matricula tarefa = tableModel.getCadastro(tabela.getSelectedRow());
+				int resposta = JOptionPane.showConfirmDialog(MatriculaListPanel.this, "Deseja realmente remover?",
+						InitialFrame.titulo, JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				if (resposta == JOptionPane.YES_OPTION) {
 					TarefaStorage.remover(tarefa);
 					tableModel.remover(tarefa);
@@ -81,8 +79,9 @@ public class AlunoListPanel extends JPanel {
 	}
 
 	private void criarTabelaPanel() {
-
-		tableModel = new AlunoTableModel(TarefaStorage.listar());
+		// JPanel panel = new JPanel();
+		JPanel panel = new JPanel(new BorderLayout());
+		tableModel = new MatriculaTableModel(TarefaStorage.listar());
 		tabela = new JTable(tableModel);
 		tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tabela.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -99,14 +98,10 @@ public class AlunoListPanel extends JPanel {
 		});
 
 		JScrollPane scrollPane = new JScrollPane(tabela);
-		add(scrollPane, BorderLayout.CENTER);
+		// panel.add(scrollPane);
+		panel.add(scrollPane, BorderLayout.CENTER);
+		add(panel, BorderLayout.CENTER);
 
-		tabela.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
-		tabela.getTableHeader().setReorderingAllowed(false);
-
-		TableColumnModel columnModel = tabela.getColumnModel();
-		TableColumn firstColumn = columnModel.getColumn(0);
-		firstColumn.setPreferredWidth(150);
 	}
 
 	private void habilitarBtns() {
@@ -118,4 +113,4 @@ public class AlunoListPanel extends JPanel {
 		editarTarefaBtn.setEnabled(false);
 		removerTarefaBtn.setEnabled(false);
 	}
-} // fim da classe TarefaListPanel
+} // fim da classe MatriculaListPanel
