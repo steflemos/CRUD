@@ -63,6 +63,7 @@ public class MatriculaFormPanel extends JPanel {
 		constraints = new GridBagConstraints();
 
 		setLayout(layout);
+		
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentShown(ComponentEvent e) {

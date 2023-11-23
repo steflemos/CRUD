@@ -81,6 +81,7 @@ public class MatriculaListPanel extends JPanel {
 	private void criarTabelaPanel() {
 		// JPanel panel = new JPanel();
 		JPanel panel = new JPanel(new BorderLayout());
+		
 		tableModel = new MatriculaTableModel(TarefaStorage.listar());
 		tabela = new JTable(tableModel);
 		tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
