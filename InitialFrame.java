@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 
 
 public class InitialFrame extends JFrame {
-	public static final String titulo = "Matricula de alunos";
+	public static final String titulo = "Matrícula de alunos";
 	
 	private CardLayout layout;
 	private JPanel cardsPane;

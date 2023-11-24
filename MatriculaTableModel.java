@@ -6,7 +6,7 @@ import javax.swing.table.AbstractTableModel;
 public class MatriculaTableModel extends AbstractTableModel {
 	private List<Matricula> cadastros = new ArrayList<Matricula>();
 	private String[] colunas = new String[] { "Id", "Nome", "Idade", "Email", "Endereço", "Cep", "Telefone", "Curso",
-			"Observação", "Status" };
+			"Observação", "Ativo" };
 
 	public MatriculaTableModel(List<Matricula> cadastros) {
 		this.cadastros = cadastros;

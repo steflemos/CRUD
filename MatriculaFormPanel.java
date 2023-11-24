@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -6,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.Arrays;
 
 import javax.swing.JButton;
@@ -43,13 +46,15 @@ public class MatriculaFormPanel extends JPanel {
 			"Blockchain e Criptomoedas", "Cloud Computing", "Desenvolvimento de Jogos", "Arquitetura de Software" };
 	private JComboBox<String> cursoTxt;
 	private JTextArea obsTxt;
+
 	private interface AtivoLabel {
-        public static final String ATIVO = "Ativo";
-        public static final String DESATIVO = "Desativo";
-        public static String[] labels = {
-                ATIVO, DESATIVO
-        };
-    }
+		public static final String ATIVO = "Ativo";
+		public static final String DESATIVO = "Desativo";
+		public static String[] labels = {
+				ATIVO, DESATIVO
+		};
+	}
+
 	private JComboBox<String> ativoComboBox;
 	private JButton salvarBtn;
 	private JButton cancelarBtn;
@@ -63,7 +68,7 @@ public class MatriculaFormPanel extends JPanel {
 		constraints = new GridBagConstraints();
 
 		setLayout(layout);
-		
+
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentShown(ComponentEvent e) {
@@ -80,6 +85,14 @@ public class MatriculaFormPanel extends JPanel {
 					cursoTxt.setSelectedIndex(0);
 					obsTxt.setText("");
 					ativoComboBox.setSelectedItem(AtivoLabel.ATIVO);
+
+					adicionarTextoExemplo(nomeTxt, "Eduardo Camilo Inacio");
+					adicionarTextoExemplo(idadeTxt, "25 anos");
+					adicionarTextoExemplo(emailTxt, "exemplo@exemplo.com");
+					adicionarTextoExemplo(enderecoTxt, "Rua Exemplo, 123");
+					adicionarTextoExemplo(cepTxt, "12345-678");
+					adicionarTextoExemplo(telefoneTxt, "(12) 3456-7890");
+
 				} else {
 					idTxt.setText(Integer.toString(cadastro.getId()));
 					nomeTxt.setText(cadastro.getNome());
@@ -113,22 +126,22 @@ public class MatriculaFormPanel extends JPanel {
 		idTxt.setEditable(false);
 		adicionarComponente(idTxt, 0, 1);
 
-		rotulo = new JLabel("Nome*");
+		rotulo = new JLabel("Nome (*)");
 		adicionarComponente(rotulo, 1, 0);
 		nomeTxt = new JTextField(30);
 		adicionarComponente(nomeTxt, 1, 1);
 
-		rotulo = new JLabel("Idade*");
+		rotulo = new JLabel("Idade (*)");
 		adicionarComponente(rotulo, 2, 0);
 		idadeTxt = new JTextField(3);
 		adicionarComponente(idadeTxt, 2, 1);
 
-		rotulo = new JLabel("Email*");
+		rotulo = new JLabel("Email (*)");
 		adicionarComponente(rotulo, 3, 0);
 		emailTxt = new JTextField(30);
 		adicionarComponente(emailTxt, 3, 1);
 
-		rotulo = new JLabel("Endereço*");
+		rotulo = new JLabel("Endereço (*)");
 		adicionarComponente(rotulo, 4, 0);
 		enderecoTxt = new JTextField(30);
 		adicionarComponente(enderecoTxt, 4, 1);
@@ -143,17 +156,17 @@ public class MatriculaFormPanel extends JPanel {
 		telefoneTxt = new JTextField(11);
 		adicionarComponente(telefoneTxt, 6, 1);
 
-		rotulo = new JLabel("Usuario");
+		rotulo = new JLabel("Usuario (*)");
 		adicionarComponente(rotulo, 7, 0);
 		usuarioTxt = new JTextField(24);
 		adicionarComponente(usuarioTxt, 7, 1);
 
-		rotulo = new JLabel("Senha");
+		rotulo = new JLabel("Senha (*)");
 		adicionarComponente(rotulo, 8, 0);
 		senhaTxt = new JPasswordField(12);
 		adicionarComponente(senhaTxt, 8, 1);
 
-		rotulo = new JLabel("Curso");
+		rotulo = new JLabel("Curso (*)");
 		adicionarComponente(rotulo, 9, 0);
 		cursoTxt = new JComboBox<>(cursos);
 		adicionarComponente(cursoTxt, 9, 1);
@@ -165,10 +178,10 @@ public class MatriculaFormPanel extends JPanel {
 		scrollPane = new JScrollPane(obsTxt);
 		adicionarComponente(scrollPane, 10, 1);
 
-		rotulo = new JLabel("Status");
-        adicionarComponente(rotulo, 11, 0);
-        ativoComboBox = new JComboBox<>(AtivoLabel.labels);
-        adicionarComponente(ativoComboBox, 11, 1);
+		rotulo = new JLabel("Ativo (*)");
+		adicionarComponente(rotulo, 11, 0);
+		ativoComboBox = new JComboBox<>(AtivoLabel.labels);
+		adicionarComponente(ativoComboBox, 11, 1);
 
 		criarBotoes();
 	}
@@ -184,48 +197,96 @@ public class MatriculaFormPanel extends JPanel {
 		adicionarComponente(btnPanel, 12, 1, 2, 1);
 	}
 
+	private void adicionarTextoExemplo(JTextField textField, String exemplo) {
+		textField.setText(exemplo);
+		textField.setForeground(Color.GRAY);
+
+		textField.addFocusListener(new FocusListener() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (textField.getText().equals(exemplo)) {
+					textField.setText("");
+					textField.setForeground(Color.BLACK);
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (textField.getText().isEmpty()) {
+					textField.setText(exemplo);
+					textField.setForeground(Color.GRAY);
+				}
+			}
+		});
+	}
+
 	private void criarSalvarBtn(JPanel panel) {
 		salvarBtn = new JButton("Salvar");
 		salvarBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (cadastro == null) {
-					cadastro = new Matricula();
-					cadastro.setNome(nomeTxt.getText());
-					cadastro.setIdade(idadeTxt.getText());
-					cadastro.setEmail(emailTxt.getText());
-					cadastro.setEndereco(enderecoTxt.getText());
-					cadastro.setCep(cepTxt.getText());
-					cadastro.setTelefone(telefoneTxt.getText());
-					cadastro.setUsuario(usuarioTxt.getText());
-					cadastro.setSenha(senhaTxt.getText());
-					cadastro.setObservacao(obsTxt.getText());
-					cadastro.setCurso(cursoTxt.getSelectedItem());
-					cadastro.setAtivo(ativoComboBox.getSelectedItem() == AtivoLabel.ATIVO);
-					TarefaStorage.inserir(cadastro);
+				if (camposPreenchidosCorretamente()) {
+					if (cadastro == null) {
+						cadastro = new Matricula();
+						cadastro.setNome(nomeTxt.getText());
+						cadastro.setIdade(idadeTxt.getText());
+						cadastro.setEmail(emailTxt.getText());
+						cadastro.setEndereco(enderecoTxt.getText());
+						cadastro.setCep(cepTxt.getText());
+						cadastro.setTelefone(telefoneTxt.getText());
+						cadastro.setUsuario(usuarioTxt.getText());
+						cadastro.setSenha(senhaTxt.getText());
+						cadastro.setObservacao(obsTxt.getText());
+						cadastro.setCurso(cursoTxt.getSelectedItem());
+						cadastro.setAtivo(ativoComboBox.getSelectedItem() == AtivoLabel.ATIVO);
+						TarefaStorage.inserir(cadastro);
+					} else {
+						cadastro.setId(Integer.parseInt(idTxt.getText()));
+						cadastro.setNome(nomeTxt.getText());
+						cadastro.setIdade(idadeTxt.getText());
+						cadastro.setEmail(emailTxt.getText());
+						cadastro.setEndereco(enderecoTxt.getText());
+						cadastro.setCep(cepTxt.getText());
+						cadastro.setTelefone(telefoneTxt.getText());
+						cadastro.setUsuario(usuarioTxt.getText());
+						cadastro.setSenha(senhaTxt.getText());
+						cadastro.setCurso(cursoTxt.getSelectedItem());
+						cadastro.setObservacao(obsTxt.getText());
+						cadastro.setAtivo(ativoComboBox.getSelectedItem() == AtivoLabel.ATIVO);
+						TarefaStorage.atualizar(cadastro);
+					}
+					JOptionPane.showMessageDialog(MatriculaFormPanel.this, "Aluno cadastrado com sucesso!",
+							InitialFrame.titulo,
+							JOptionPane.INFORMATION_MESSAGE);
+					frame.mostrarListaTarefas();
 				} else {
-					cadastro.setId(Integer.parseInt(idTxt.getText()));
-					cadastro.setNome(nomeTxt.getText());
-					cadastro.setIdade(idadeTxt.getText());
-					cadastro.setEmail(emailTxt.getText());
-					cadastro.setEndereco(enderecoTxt.getText());
-					cadastro.setCep(cepTxt.getText());
-					cadastro.setTelefone(telefoneTxt.getText());
-					cadastro.setUsuario(usuarioTxt.getText());
-					cadastro.setSenha(senhaTxt.getText());
-					cadastro.setCurso(cursoTxt.getSelectedItem());
-					cadastro.setObservacao(obsTxt.getText());
-					cadastro.setAtivo(ativoComboBox.getSelectedItem() == AtivoLabel.ATIVO);
-					TarefaStorage.atualizar(cadastro);
+					JOptionPane.showMessageDialog(MatriculaFormPanel.this, "Preencha todos os campos corretamente!",
+							"Erro de validação", JOptionPane.ERROR_MESSAGE);
 				}
-
-				JOptionPane.showMessageDialog(MatriculaFormPanel.this, "Aluno cadastrado com sucesso!", InitialFrame.titulo,
-						JOptionPane.INFORMATION_MESSAGE);
-
-				frame.mostrarListaTarefas();
 			}
 		});
 		panel.add(salvarBtn);
+	}
+
+	private boolean camposPreenchidosCorretamente() {
+		// falta descobrir como fazer para o usuario nao conseguir submeter um form sem
+		// preencher curso e status
+		if (nomeTxt.getText().isEmpty() || idadeTxt.getText().isEmpty() || emailTxt.getText().isEmpty()
+				|| usuarioTxt.getText().isEmpty() || senhaTxt.getText().isEmpty()) {
+			return false;
+		}
+
+		if (!idadeTxt.getText().matches("\\d+")) {
+			return false;
+		}
+
+		String email = emailTxt.getText();
+		String emailModel = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+		if (!email.matches(emailModel)) {
+			return false;
+		}
+
+		return true;
 	}
 
 	private void criarCancelarBtn(JPanel panel) {
