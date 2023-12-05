@@ -7,7 +7,8 @@ public class ConexaoFactory {
 
     private static final String URL = "jdbc:mysql://localhost:3306/crud";
     private static final String USUARIO = "root";
-    private static final String SENHA = "password";
+   // private static final String SENHA = "password";
+    private static final String SENHA = "senai";
 
     private static Connection conexao;
 
