@@ -239,7 +239,7 @@ public class MatriculaFormPanel extends JPanel {
 						cadastro.setObservacao(obsTxt.getText());
 						cadastro.setCurso(cursoTxt.getSelectedItem());
 						cadastro.setAtivo(ativoComboBox.getSelectedItem() == AtivoLabel.ATIVO);
-						// TarefaStorage.inserir(cadastro);
+						MatriculaStorage.inserir(cadastro);
 					} else {
 						cadastro.setId(Integer.parseInt(idTxt.getText()));
 						cadastro.setNome(nomeTxt.getText());
@@ -253,7 +253,7 @@ public class MatriculaFormPanel extends JPanel {
 						cadastro.setCurso(cursoTxt.getSelectedItem());
 						cadastro.setObservacao(obsTxt.getText());
 						cadastro.setAtivo(ativoComboBox.getSelectedItem() == AtivoLabel.ATIVO);
-						// TarefaStorage.atualizar(cadastro);
+						MatriculaStorage.atualizar(cadastro);
 					}
 					JOptionPane.showMessageDialog(MatriculaFormPanel.this, "Aluno cadastrado com sucesso!",
 							InitialFrame.titulo,
