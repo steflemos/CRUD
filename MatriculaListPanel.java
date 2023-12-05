@@ -66,7 +66,7 @@ public class MatriculaListPanel extends JPanel {
 				int resposta = JOptionPane.showConfirmDialog(MatriculaListPanel.this, "Deseja realmente remover?",
 						InitialFrame.titulo, JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				if (resposta == JOptionPane.YES_OPTION) {
-					// TarefaStorage.remover(tarefa);
+					MatriculaStorage.remover(tarefa);
 					tableModel.remover(tarefa);
 				}
 			}

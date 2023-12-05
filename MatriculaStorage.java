@@ -77,6 +77,7 @@ public class MatriculaStorage {
 			prepStmt.setObject(9, matricula.getCurso());
 			prepStmt.setString(10, matricula.getObservacao());
 			prepStmt.setBoolean(11, matricula.getAtivo());
+			prepStmt.setInt(12, matricula.getId());
 			prepStmt.execute();
 		} catch (Exception e) {
 			e.printStackTrace();

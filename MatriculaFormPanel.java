@@ -240,7 +240,9 @@ public class MatriculaFormPanel extends JPanel {
 						cadastro.setCurso(cursoTxt.getSelectedItem());
 						cadastro.setAtivo(ativoComboBox.getSelectedItem() == AtivoLabel.ATIVO);
 						MatriculaStorage.inserir(cadastro);
+						System.out.println("inseriu");
 					} else {
+						System.out.println("caiu no atualizar");
 						cadastro.setId(Integer.parseInt(idTxt.getText()));
 						cadastro.setNome(nomeTxt.getText());
 						cadastro.setIdade(idadeTxt.getText());
@@ -253,7 +255,11 @@ public class MatriculaFormPanel extends JPanel {
 						cadastro.setCurso(cursoTxt.getSelectedItem());
 						cadastro.setObservacao(obsTxt.getText());
 						cadastro.setAtivo(ativoComboBox.getSelectedItem() == AtivoLabel.ATIVO);
+						System.out.println("setou no atualizar");
+
 						MatriculaStorage.atualizar(cadastro);
+						System.out.println("chamou o método atualizar");
+
 					}
 					JOptionPane.showMessageDialog(MatriculaFormPanel.this, "Aluno cadastrado com sucesso!",
 							InitialFrame.titulo,
