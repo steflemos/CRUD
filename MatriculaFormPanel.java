@@ -277,12 +277,16 @@ public class MatriculaFormPanel extends JPanel {
 		}
 
 		if (!idadeTxt.getText().matches("\\d+")) {
+			JOptionPane.showMessageDialog(MatriculaFormPanel.this, "A idade deve ser um número válido!",
+					"Erro de validação", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
 		String email = emailTxt.getText();
 		String emailModel = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 		if (!email.matches(emailModel)) {
+			JOptionPane.showMessageDialog(MatriculaFormPanel.this, "O email deve ser válido!",
+					"Erro de validação", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 

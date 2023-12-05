@@ -1,1 +1,8 @@
-java -cp ".;./mysql-connector-j-8.2.0.jar" InitialFrame
+baixar:
+https://dev.mysql.com/downloads/file/?id=522774
+
+copiar e colar este arquivo no diretorio raiz: mysql-connector-j-8.2.0
+
+colar este comando no terminal
+java -cp ".;./mysql-connector-j-8.2.0.jar" Main
+
