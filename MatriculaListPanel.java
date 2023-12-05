@@ -30,7 +30,7 @@ public class MatriculaListPanel extends JPanel {
 	}
 
 	public void recarregar() {
-		tableModel.carregar(TarefaStorage.listar());
+		tableModel.carregar(MatriculaStorage.listar());
 	}
 
 	private void criarComandosPanel() {
@@ -82,7 +82,7 @@ public class MatriculaListPanel extends JPanel {
 		// JPanel panel = new JPanel();
 		JPanel panel = new JPanel(new BorderLayout());
 		
-		tableModel = new MatriculaTableModel(TarefaStorage.listar());
+		tableModel = new MatriculaTableModel(MatriculaStorage.listar());
 		tabela = new JTable(tableModel);
 		tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tabela.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
