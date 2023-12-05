@@ -27,9 +27,9 @@ public class TarefaStorage {
 			prepStmt.setString(6, matricula.getTelefone());
 			prepStmt.setString(7, matricula.getUsuario());
 			prepStmt.setString(8, matricula.getSenha());
-			prepStmt.setString(9, matricula.getCurso());
+			prepStmt.setObject(9, matricula.getCurso());
 			prepStmt.setString(10, matricula.getObservacao());
-			prepStmt.setString(11, matricula.getAtivo());
+			prepStmt.setBoolean(11, matricula.getAtivo());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -68,9 +68,9 @@ public class TarefaStorage {
 			prepStmt.setString(6, matricula.getTelefone());
 			prepStmt.setString(7, matricula.getUsuario());
 			prepStmt.setString(8, matricula.getSenha());
-			prepStmt.setString(9, matricula.getCurso());
+			prepStmt.setObject(9, matricula.getCurso());
 			prepStmt.setString(10, matricula.getObservacao());
-			prepStmt.setString(11, matricula.getAtivo());
+			prepStmt.setBoolean(11, matricula.getAtivo());
 			prepStmt.execute();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -94,7 +94,7 @@ public class TarefaStorage {
 			conn = ConexaoFactory.getConexao();
 
 			prepStmt = conn.prepareStatement(query);
-			prepStmt.setInt(1, tarefa.getId());
+			prepStmt.setInt(1, matricula.getId());
 			prepStmt.execute();
 		} catch (Exception e) {
 			e.printStackTrace();

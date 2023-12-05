@@ -84,13 +84,14 @@ public class Matricula {
         this.senha = senha;
     }
 
-    public Object getCurso(){
-        return curso;
-    }
 
-    public void setCurso(Object object){
-        this.curso = object;
-    }
+    public Object getCurso() {
+        return curso;
+      }
+    
+      public void setCurso(Object curso) {
+        this.curso = curso;
+      }
 
     public String getObservacao() {
         return observacao;
