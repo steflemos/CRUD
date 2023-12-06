@@ -277,8 +277,6 @@ public class MatriculaFormPanel extends JPanel {
 	}
 
 	private boolean camposPreenchidosCorretamente() {
-		// falta descobrir como fazer para o usuario nao conseguir submeter um form sem
-		// preencher curso e status
 		if (nomeTxt.getText().isEmpty() || idadeTxt.getText().isEmpty() || emailTxt.getText().isEmpty()
 				|| usuarioTxt.getText().isEmpty() || senhaTxt.getText().isEmpty() || cursoTxt.getSelectedIndex() == 0 || ativoComboBox.getSelectedItem() == AtivoLabel.SELECIONE) {
 			return false;
