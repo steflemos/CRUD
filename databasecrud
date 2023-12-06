@@ -15,3 +15,21 @@ create table matricula (
     observacoes varchar(255),
     ativo boolean not null
 );
+
+-- Inserir dados na tabela matricula
+INSERT INTO matricula (nome, idade, email, endereco, cep, telefone, usuario, senha, curso, observacoes, ativo)
+VALUES
+('João Silva', '25', 'joao.silva@email.com', 'Rua A, 123', '12345-678', '123456789', 'joao123', 'senha123', 'Desenvolvimento Web', 'Nenhuma observação',1),
+('Maria Oliveira', '30', 'maria.oliveira@email.com', 'Avenida B, 456', '98765-432', '987654321', 'maria456', 'senha456', 'Inteligência Artificial', 'Observação importante', 0),
+('Carlos Pereira', '22', 'carlos.pereira@email.com', 'Travessa C, 789', '54321-876', '987654123', 'carlos789', 'senha789', 'Segurança da Informação', 'Observação adicional',1),
+('Ana Santos', '28', 'ana.santos@email.com', 'Praça D, 101', '87654-321', '654321987', 'ana101', 'senha101', 'Ciência de Dados', 'Observação final', 0),
+('Mariana Costa', '23', 'mariana.costa@email.com', 'Rua X, 789', '54321-987', '987654987', 'mariana789', 'senha789', 'Desenvolvimento Mobile', 'Sem observações',1),
+('Rafael Oliveira', '27', 'rafael.oliveira@email.com', 'Avenida Y, 567', '76543-210', '765432109', 'rafael567', 'senha567', 'Redes de Computadores', 'Observação especial', 0),
+('Fernanda Lima', '24', 'fernanda.lima@email.com', 'Travessa Z, 890', '32109-876', '123456789', 'fernanda890', 'senha890', 'Blockchain e Criptomoedas', 'Outra observação',1),
+('Pedro Almeida', '29', 'pedro.almeida@email.com', 'Praça W, 112', '10987-654', '987654321', 'pedro112', 'senha112', 'Cloud Computing', 'Observação importante', 0),
+('Camila Santos', '26', 'camila.santos@email.com', 'Rua M, 234', '98765-432', '654321098', 'camila234', 'senha234', 'Desenvolvimento de Jogos', 'Observação final',1),
+('Lucas Pereira', '31', 'lucas.pereira@email.com', 'Avenida N, 345', '87654-321', '876543210', 'lucas345', 'senha345', 'Desenvolvimento Web', 'Sem observações', 0),
+('Juliana Silva', '25', 'juliana.silva@email.com', 'Travessa O, 567', '54321-098', '123098765', 'juliana567', 'senha567', 'Inteligência Artificial', 'Outra observação adicional',1),
+('Roberto Costa', '28', 'roberto.costa@email.com', 'Praça P, 789', '21098-765', '876543210', 'roberto789', 'senha789', 'Segurança da Informação', 'Observação final importante', 0),
+('Amanda Oliveira', '22', 'amanda.oliveira@email.com', 'Avenida Q, 101', '98765-432', '109876543', 'amanda101', 'senha101', 'Ciência de Dados', 'Observação especial',1),
+('Gustavo Santos', '30', 'gustavo.santos@email.com', 'Rua R, 112', '54321-876', '876543210', 'gustavo112', 'senha112', 'Desenvolvimento Mobile', 'Nenhuma observação', 0);
