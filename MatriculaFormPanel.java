@@ -48,10 +48,12 @@ public class MatriculaFormPanel extends JPanel {
 	private JTextArea obsTxt;
 
 	private interface AtivoLabel {
+		public static final String SELECIONE = "Selecione";
 		public static final String ATIVO = "Ativo";
 		public static final String DESATIVO = "Desativo";
+
 		public static String[] labels = {
-				ATIVO, DESATIVO
+			SELECIONE, ATIVO, DESATIVO
 		};
 	}
 
@@ -84,7 +86,7 @@ public class MatriculaFormPanel extends JPanel {
 					senhaTxt.setText("");
 					cursoTxt.setSelectedIndex(0);
 					obsTxt.setText("");
-					ativoComboBox.setSelectedItem(AtivoLabel.ATIVO);
+					ativoComboBox.setSelectedItem(AtivoLabel.SELECIONE);
 
 					adicionarTextoExemplo(nomeTxt, "Eduardo Camilo Inacio");
 					adicionarTextoExemplo(idadeTxt, "25 anos");
@@ -278,7 +280,7 @@ public class MatriculaFormPanel extends JPanel {
 		// falta descobrir como fazer para o usuario nao conseguir submeter um form sem
 		// preencher curso e status
 		if (nomeTxt.getText().isEmpty() || idadeTxt.getText().isEmpty() || emailTxt.getText().isEmpty()
-				|| usuarioTxt.getText().isEmpty() || senhaTxt.getText().isEmpty()) {
+				|| usuarioTxt.getText().isEmpty() || senhaTxt.getText().isEmpty() || cursoTxt.getSelectedIndex() == 0 || ativoComboBox.getSelectedItem() == AtivoLabel.SELECIONE) {
 			return false;
 		}
 
